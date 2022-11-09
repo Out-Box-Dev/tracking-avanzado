@@ -15,19 +15,92 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/colreorder/1.5.6/js/dataTables.colReorder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 <body>
-    <header class="container-fluid">
-        <section class="row">
-            <div class="col-12 p-0">
-                <span style="background-color: #003;height: 20px !important;" class="w-100 d-flex"></span>
+    <style>
+        .select2-container{
+            width: 100% !important;
+        }
+    </style>
+    <br>
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="card text-bg-light mb-3">
+                    <div class="row g-0">
+                        <div class="d-flex justify-content-center align-items-center col-md-4">
+                            <i class="fa-solid fa-4x fa-plane-up" style="color: #424242"></i>
+                        </div>
+                        <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Aereo</h5>
+                            <span class="badge text-bg-primary"><p class="card-text">152.369</p></span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 p-4">
-                <img src="img/delpa-logo.jpg" alt="Logo">
+            <div class="col-4">
+                <div class="card text-bg-light mb-3">
+                    <div class="row g-0">
+                        <div class="d-flex justify-content-center align-items-center col-md-4">
+                            <i class="fa-solid fa-4x fa-ship" style="color: #424242"></i>
+                        </div>
+                        <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Maritimo</h5>
+                            <span class="badge text-bg-primary"><p class="card-text">152.369</p></span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-    </header>
-    <hr>
+            <div class="col-4">
+                <div class="card text-bg-light mb-3">
+                    <div class="row g-0">
+                        <div class="d-flex justify-content-center align-items-center col-md-4">
+                            <i class="fa-solid fa-4x fa-truck" style="color: #424242"></i>
+                        </div>
+                        <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Terrestre</h5>
+                            <span class="badge text-bg-primary"><p class="card-text">152.369</p></span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                    <option>Total Embarques</option>
+                    <option>Pendiente Estado</option>
+                    <option>Mercaderia Lista para Embarque</option>
+                    <option>Recogida en Origen o recepcion CD</option>
+                    <option>Arribo Aduana de Origen</option>
+                    <option>Liberacion Aduana de Origen</option>
+                    <option>Salida Puerto Embarque (ETD)</option>
+                    <option>Arribo Puerto Embarque (ETA)</option>
+                    <option>Ingreso Aduana de destino</option>
+                    <option>Liberacion Aduana Destino</option>
+                    <option>Recogida en Destino</option>
+                    <option>Entrega  Finalizada</option>
+                    <option>Problemas</option>
+                </select>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <button type="button" class="btn btn-success"><i class="fa-solid fa-square-plus"></i> Crear Orden</button>
+                &nbsp;
+                <button type="button" class="btn btn-info"><i class="fa-solid fa-file-excel"></i> Exportar</button>
+            </div>
+        </div>
+    </section>
+    <br>
     <section class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -310,6 +383,9 @@
                     orderCellsTop: true,
                     fixedHeader: true,
                     colReorder: true,
+                    language: {
+                        url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
+                    },
                     initComplete: function () {
                         var api = this.api();
             
@@ -361,7 +437,10 @@
                     },
                 });
             });
-            $('[data-toggle="tooltip"]').tooltip(); 
+            $('[data-toggle="tooltip"]').tooltip();
+            $('.js-example-basic-multiple').select2({
+                placeholder: 'Seleccione los estatus a mostrar'
+            });
         });
     </script>
 </body>
